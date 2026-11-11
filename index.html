@@ -1,81 +1,185 @@
 
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adrian AI Vendedor</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fffdf8;
-      color: #29251e;
-    }
-    header {
-      background: #ffffff;
-      padding: 20px;
-      border-bottom: 2px solid #d6b45d;
-      text-align: center;
-    }
-    h1 { color: #b28a32; }
-    .hero {
-      padding: 65px 20px;
-      text-align: center;
-      background: #f8f1df;
-    }
-    .hero h2 { font-size: 30px; }
-    .hero p { line-height: 1.6; }
-    button {
-      background: #b28a32;
-      color: white;
-      border: 0;
-      padding: 14px 24px;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    .features {
-      padding: 30px 20px;
-      text-align: center;
-    }
-    .feature {
-      background: white;
-      padding: 20px;
-      margin: 15px 0;
-      border: 1px solid #ead9ac;
-      border-radius: 12px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adrian AI Vendedor</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f7f7f7;color:#222}
+header{background:#171717;color:white;text-align:center;padding:25px 12px}
+header h1{color:#d9ad50;margin:5px}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:12px;background:white}
+button{background:#d9ad50;color:#171717;border:0;padding:12px 16px;border-radius:7px;font-weight:bold;cursor:pointer}
+main{max-width:850px;margin:auto;padding:15px}
+section{display:none;background:white;padding:18px;border-radius:10px;margin-bottom:15px}
+section.active{display:block}
+input,textarea{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #ccc;border-radius:6px}
+.product{border:1px solid #ddd;padding:12px;border-radius:8px;margin:12px 0}
+.price{color:#a87919;font-weight:bold}
+.small{color:#666;font-size:13px}
+</style>
 </head>
 <body>
-  <header>
-    <h1>ADRIAN AI VENDEDOR</h1>
-    <p>O teu assistente inteligente de vendas</p>
-  </header>
 
-  <section class="hero">
-    <h2>Vende mais com inteligência artificial</h2>
-    <p>Cria a tua loja online, apresenta os teus produtos e conquista clientes em Angola e no mundo.</p>
-    <button onclick="alert('Bem-vindo ao Adrian AI Vendedor!')">
-      Começar agora
-    </button>
-  </section>
+<header>
+<h1>ADRIAN AI VENDEDOR</h1>
+<p>O teu mercado online, em Angola e no mundo</p>
+</header>
 
-  <section class="features">
-    <h2>O que podes fazer?</h2>
-    <div class="feature">
-      <h3>🛍️ Loja online</h3>
-      <p>Apresenta os teus produtos na internet.</p>
-    </div>
-    <div class="feature">
-      <h3>🤖 Assistente AI</h3>
-      <p>Ajuda inteligente para as tuas vendas.</p>
-    </div>
-    <div class="feature">
-      <h3>🌍 Mercado internacional</h3>
-      <p>Alcança clientes em vários países.</p>
-    </div>
-  </section>
+<nav>
+<button onclick="show('home')">Início</button>
+<button onclick="show('loja')">Loja online</button>
+<button onclick="show('vendedor')">Ser vendedor</button>
+<button onclick="show('assistente')">Assistente AI</button>
+<button onclick="show('admin')">Administração</button>
+</nav>
+
+<main>
+
+<section id="home" class="active">
+<h2>Bem-vindo ao Adrian AI Vendedor</h2>
+<p>Compra, vende e divulga os teus produtos numa só plataforma.</p>
+<h3>15% de comissão por venda confirmada</h3>
+<p>Registo gratuito para vendedores.</p>
+<button onclick="show('loja')">Explorar produtos</button>
+</section>
+
+<section id="loja">
+<h2>Loja online</h2>
+<p>Produtos disponíveis:</p>
+<div id="products"></div>
+</section>
+
+<section id="vendedor">
+<h2>Registo gratuito de vendedor</h2>
+<form id="sellerForm">
+<label>Nome do vendedor</label>
+<input id="sellerName" required>
+<label>WhatsApp</label>
+<input id="sellerPhone" required>
+<label>Nome da loja</label>
+<input id="storeName" required>
+<button type="submit">Registar vendedor</button>
+</form>
+
+<hr>
+<h3>Publicar produto</h3>
+<form id="productForm">
+<label>Nome do produto</label>
+<input id="productName" required>
+<label>Preço em Kz</label>
+<input id="productPrice" type="number" min="1" required>
+<label>Descrição</label>
+<textarea id="productDescription"></textarea>
+<button type="submit">Publicar produto</button>
+</form>
+</section>
+
+<section id="assistente">
+<h2>Assistente AI</h2>
+<p>Escreve o nome do produto para receber uma sugestão de anúncio.</p>
+<input id="aiProduct" placeholder="Ex.: Auriculares sem fios">
+<button onclick="makeAd()">Criar anúncio</button>
+<div id="adResult"></div>
+<p class="small">Esta é uma demonstração simples. A ligação a uma inteligência artificial real será adicionada numa próxima etapa.</p>
+</section>
+
+<section id="admin">
+<h2>Painel de administração</h2>
+<p>Comissão da plataforma: 15%</p>
+<p>Registos de vendedores: <strong id="sellerCount">0</strong></p>
+<p>Produtos publicados: <strong id="productCount">0</strong></p>
+<h3>Simulador de comissão</h3>
+<input id="saleValue" type="number" placeholder="Valor da venda em Kz">
+<button onclick="calculate()">Calcular</button>
+<div id="commissionResult"></div>
+<p class="small">Os dados desta demonstração ficam guardados apenas neste navegador. Ainda não existe uma base de dados partilhada.</p>
+</section>
+
+</main>
+
+<script>
+let sellers=JSON.parse(localStorage.getItem('adrianSellers')||'[]');
+let products=JSON.parse(localStorage.getItem('adrianProducts')||'[]');
+
+function save(){
+localStorage.setItem('adrianSellers',JSON.stringify(sellers));
+localStorage.setItem('adrianProducts',JSON.stringify(products));
+render();
+}
+
+function show(id){
+document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+render();
+}
+
+document.getElementById('sellerForm').addEventListener('submit',function(e){
+e.preventDefault();
+sellers.push({
+name:sellerName.value,
+phone:sellerPhone.value,
+store:storeName.value
+});
+save();
+this.reset();
+alert('Registo guardado neste navegador!');
+});
+
+document.getElementById('productForm').addEventListener('submit',function(e){
+e.preventDefault();
+products.push({
+name:productName.value,
+price:Number(productPrice.value),
+description:productDescription.value
+});
+save();
+this.reset();
+alert('Produto publicado!');
+});
+
+function render(){
+productsDiv=document.getElementById('products');
+productsDiv.innerHTML='';
+products.forEach((p,i)=>{
+let div=document.createElement('div');
+div.className='product';
+let name=document.createElement('h3');
+name.textContent=p.name;
+let desc=document.createElement('p');
+desc.textContent=p.description;
+let price=document.createElement('p');
+price.className='price';
+price.textContent=p.price.toLocaleString('pt-PT')+' Kz';
+let buy=document.createElement('button');
+buy.textContent='Encomendar pelo WhatsApp';
+buy.onclick=()=>window.open('https://wa.me/244926147417?text='+encodeURIComponent('Olá! Quero encomendar: '+p.name+' por '+p.price+' Kz.'),'_blank');
+div.append(name,desc,price,buy);
+productsDiv.appendChild(div);
+});
+document.getElementById('sellerCount').textContent=sellers.length;
+document.getElementById('productCount').textContent=products.length;
+}
+
+function makeAd(){
+let name=document.getElementById('aiProduct').value.trim();
+if(!name){alert('Escreve o nome do produto.');return;}
+document.getElementById('adResult').textContent=
+'🔥 Conheça '+name+'! Entre em contacto para saber mais e fazer a sua encomenda.';
+}
+
+function calculate(){
+let value=Number(document.getElementById('saleValue').value);
+if(value<=0){alert('Introduz um valor válido.');return;}
+let fee=value*0.15;
+document.getElementById('commissionResult').textContent=
+'Comissão da plataforma: '+fee.toLocaleString('pt-PT')+' Kz. Valor do vendedor: '+(value-fee).toLocaleString('pt-PT')+' Kz.';
+}
+
+render();
+</script>
 </body>
 </html>
