@@ -193,5 +193,41 @@ function entrarAdmin() {
   }
 }
   </script>
-</body>
+<section id="admin" style="padding:25px;background:#fff;color:#222">
+<h2 style="color:#b8860b">Adrian AI Vendedor — Administração</h2>
+
+<h3>Resumo da plataforma</h3>
+<p>Comissão: 15%</p>
+
+<div>
+<h3>Gestão de vendedores</h3>
+<input id="vendedor" placeholder="Nome do vendedor">
+<button onclick="adicionarVendedor()">Adicionar vendedor</button>
+<ul id="listaVendedores"></ul>
+</div>
+
+<div>
+<h3>Registar venda</h3>
+<input id="valorVenda" type="number" placeholder="Valor da venda em Kz">
+<button onclick="calcularComissao()">Calcular comissão</button>
+<p id="resultado"></p>
+</div>
+</section>
+
+<script>
+function adicionarVendedor(){
+let nome=document.getElementById('vendedor').value;
+if(!nome)return;
+let item=document.createElement('li');
+item.textContent=nome;
+document.getElementById('listaVendedores').appendChild(item);
+document.getElementById('vendedor').value='';
+}
+function calcularComissao(){
+let valor=Number(document.getElementById('valorVenda').value);
+let comissao=valor*0.15;
+document.getElementById('resultado').textContent=
+'Comissão: '+comissao.toLocaleString('pt-AO')+' Kz | Vendedor recebe: '+(valor-comissao).toLocaleString('pt-AO')+' Kz';
+}
+  </script></body>
 </html>
