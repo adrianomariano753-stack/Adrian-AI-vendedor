@@ -181,5 +181,17 @@ document.getElementById('commissionResult').textContent=
 
 render();
 </script>
+  <script>
+function entrarAdmin() {
+  const codigo = prompt("Introduza o código secreto:");
+
+  if (codigo === "BENGUELA 202") {
+    alert("Acesso autorizado!");
+    window.location.href = "admin.html";
+  } else if (codigo !== null) {
+    alert("Código incorreto!");
+  }
+}
+  </script>
 </body>
 </html>
