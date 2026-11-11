@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administração | Adrian AI Vendedor</title>
+<style>
+body {
+  background: #f7f5ef;
+  font-family: Arial;
+  padding: 20px;
+}
+.box {
+  max-width: 400px;
+  margin: 60px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+}
+h2 { color: #b38b32; }
+input, button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 12px;
+  box-sizing: border-box;
+}
+button {
+  background: #b38b32;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Adrian AI Vendedor</h2>
+<h3>Área de Administração</h3>
+<input type="password" id="codigo" placeholder="Código secreto">
+<button onclick="entrar()">Entrar</button>
+<p id="mensagem"></p>
+</div>
+<script>
+function entrar() {
+  document.getElementById("mensagem").textContent =
+  "A autenticação segura ainda precisa de ser configurada no servidor.";
+}
+</script>
+</body>
+</html>
