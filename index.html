@@ -243,5 +243,42 @@ document.getElementById('resultado').textContent=
     <strong>Preço: 2.500 Kz</strong>
     <p>Formato: PDF</p>
   </div>
-  </section></body>
+  </section>
+<section id="pagamentos" style="padding:25px;background:#fff;color:#222;border-radius:12px;">
+  <h2 style="text-align:center;color:#b8860b;">
+    💳 Métodos de Pagamento
+  </h2>
+
+  <p style="text-align:center;">
+    Escolha como pretende pagar a sua encomenda.
+  </p>
+
+  <div style="border:1px solid #d4af37;border-radius:12px;padding:18px;margin-bottom:15px;">
+    <h3>🏦 Transferência Bancária BIC</h3>
+    <p><strong>Banco:</strong> Banco BIC</p>
+    <p><strong>Titular:</strong> Adriano Sandaco Mariano</p>
+    <p><strong>IBAN:</strong></p>
+    <p id="iban" style="overflow-wrap:anywhere;">
+      AO06005100003264164314115
+    </p>
+    <button onclick="navigator.clipboard.writeText(document.getElementById('iban').innerText)">
+      Copiar IBAN
+    </button>
+  </div>
+
+  <div style="border:1px solid #d4af37;border-radius:12px;padding:18px;">
+    <h3>📱 MULTICAIXA Express</h3>
+    <p><strong>Número:</strong> 975 772 249</p>
+    <button onclick="navigator.clipboard.writeText('975772249')">
+      Copiar número
+    </button>
+  </div>
+
+  <p style="margin-top:20px;">
+    Após o pagamento, envie o comprovativo para confirmação.
+    A encomenda será disponibilizada depois da confirmação
+    do recebimento.
+  </p>
+</section>
+</body>
 </html>
